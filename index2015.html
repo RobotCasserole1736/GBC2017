@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Green Bean Casserole | FRC 1736</title>
+        <meta name="description" content="This is the 2015 FRC 1736 Scouting Application, for use in the Recycle Rush game">
+        <meta name="vieport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/main.css">
+
+        <style type="text/css">
+            #div1, #div2
+            {float:left; width:64px; height:64px; margin:10px;padding:10px;border:1px solid #aaaaaa;}
+        </style>
+
+        <script type="text/javascript" src="./js/GreenBean_JS_2015.js"></script>
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="./libgif.js"></script>
+
+    </head>
+    <body>
+       <h1>Green Bean Casserole: Match Scouting System</h1>
+        <div id="teamLabel">
+	       Team Number<br>
+        </div>
+        <div id="teamDisp">
+       		<input type="tel" name="team_number_in" id="team_number_in" placeholder="0" onchange="disp_update();"><br>
+       	</div>
+        <ul class='tabs'>
+            <li><a href='#MatchData'>Match Info</a></li>
+            <li><a href='#Features' id="PitDataButton">Pit Scouting</a></li>
+            <li><a href='#AutonomousData' id="AutonomousDataButton">Autonomous</a></li>
+            <li><a href='#TeleopData' id="TeleOpDataButton">Teleop</a></li>
+            <li><a href='#PostMatch' id="MatchDataButton">Post Match</a></li>
+            <li><a href='#MatchHistory' id="MatchHistoryLink">Match History</a></li>
+            <li><a href='#About'>About</a></li>
+        </ul>
+        <div id="MatchData">
+            <!-- ------------------------------ -->
+            <!-- ----------Match Data---------- -->
+            <!-- ------------------------------ -->
+            <div id="stacks">
+                Scout Name<br><br>
+                Match Number<br><br>
+                Match Type
+            </div>
+            <div id="stacks">
+                <input type="text" name="scout_name_in" id="scout_name_in" placeholder="*"><br>
+                <input type="tel" name="match_number_in" id="match_number_in" placeholder="0"><br>
+                <select name="match_type" id="match_type" onchange="Hide_Tabs();">
+                  <option value="Qualification">Qualification</option>
+                  <option value="Practice">Practice</option>
+                  <option value="Elimination">Elimination</option>
+                  <option value="PitScouting">Pit Scouting</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="Features">
+        	<!-- ------------------------------ -->
+            <!-- ----------Features------------ -->
+            <!-- ------------------------------ -->
+            <div id="FeatureDataStrings" align="right">
+            	Drive Types:<br><br>
+            	Drive Speed:<br><br>
+            	Number of Wheels:<br><br>
+            	Totes and Bins: <br><br><br><br>
+            </div>
+
+            <div id="FeatureValues">
+            	<select name="drive_type" id="drive_type">
+            		<option value="Standard">Standard</option>
+            		<option value="Swerve">Swerve</option>
+            		<option value="Mecanum">Mecanum</option>
+            		<option value="Omni">Omni</option>
+            		<option value="Other">Other</option>
+            	</select><br>
+            	<select name="drive_speed" id="drive_speed">
+            		<option value="One">One</option>
+            		<option value="Two">Two</option>
+            		<option value="Other">Other</option>
+            	</select><br>
+            	<select name="number_wheels" id="number_wheels">
+            		<option value="Four">Four</option>
+            		<option value="Six">Six</option>
+            		<option value="Eight">Eight</option>
+            		<option value="Other">Other</option>
+            	</select><br>
+            	Pickup Totes: <input type="checkbox" name="low_pass" id="low_pass">
+            	Stack Totes: <input type="checkbox" name="high_pass" id="high_pass">
+            	Pickup Bins: <input type="checkbox" name="low_pass" id="low_pass">
+            	Stack Bins on Tote Stacks: <input type="checkbox" name="high_pass" id="high_pass">
+
+           		<br><br>
+   	           <button id="SubmitPitReport" onclick="Submit_Pit_Report()">Submit Pit Report</button>
+
+            </div>
+           <div id="FeatureComments">
+	            <textarea placeholder="DriveTrain Comments" id="DriveTrain_Comments" class="Pit_Text_Field"></textarea>
+	            <br>
+	            <textarea placeholder="Shooter Comments" id="Shooter_Comments" class="Pit_Text_Field"></textarea>
+	            <br>
+	            <textarea placeholder="General Comments" id="General_Comments" class="Pit_Text_Field"></textarea>
+            <br>
+           </div>
+
+        </div>
+
+        <div id="AutonomousData">
+            <!-- ------------------------------------- -->
+            <!-- ----------Autonomous Period---------- -->
+            <!-- ------------------------------------- -->
+
+            <!-- Need to add starting location selector here -->
+            <div id=stacks>
+              <div id="AutonomousScoring">
+                Robot to Auto Zone: <input type="checkbox" name="in_area" id="in_area" onchange="update_data();"> <br><br>
+               	Yellow Totes to Auto Zone:	<input type="number" name="AutoTotes" id="AutoTotes" min=0 max =3 size=8 onchange="update_data();" /><br>
+				Succeeded | Failed  <br>
+                Yellow Totes stacked:
+                	<input type="number" name="AutoStacks_succeeded" id="AutoStacks_succeeded" min=0 max =3 size=8 onchange="update_data();" />
+                	<input type="number" name="AutoStacks_failed" id="AutoStacks_failed" min=0 max =3 size=8 onchange="update_data();" /><br>
+                Bins to Auto Zone:
+                	<input type="number" name="AutoBins_succeeded" id="AutoBins_succeeded" min=0 max=3 size=8 onchange="update_data();" />
+                	<input type="number" name="AutoBins_failed" id="AutoBins_failed" min=0 max=3 size=8 onchange="update_data();" /><br>
+                <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br>
+              </div>
+            </div>
+            <div id=stacks>
+             <div id="StartLocation">
+                Starting Location :
+                 <select name="Location" id="Location" onchange="update_data();">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                 </select> <br>
+                <img src="img/Clip_FRC_Field_2015.jpg" height="450" width="350">
+              </div>
+             </div>
+        </div>
+
+        <div id="TeleopData">
+            <!-- --------------------------------------- -->
+            <!-- ----------Teleoperated Period---------- -->
+            <!-- --------------------------------------- -->
+
+            <div id="Human Player">
+            	<form name="BinFeeder" id="binfeeder">
+            		<h2>Human Players:</h2>
+            		<div id=stacks3>
+            		    <a>Feeds Litter: <input type="checkbox" name="human_feedsLitter" id="Human_feedsLitter" onchange="update_data();"></a><br>
+            		    <a>Throws Litter: <input type="checkbox" name="human_throwsLitter" id="Human_throwsLitter" onchange="update_data();"></a><br><br>
+            			<a># Totes Fed: <input type="number" name="human_feedsTotes" min="0" max="30"  id="Human_feedsTotes" onchange="update_data();"></a>
+            		</div>
+
+                    <div id=stacks3>
+                      <a>How's My Driving? :  </a> <a id="tele_driving_display">Little or No Movement</a>
+                      <div id="shortslider">
+                         <input class="bar" type="range" id ="driving_ability" name="driving_ability" min="0" max="3" value ="0" onchange="update_data();">
+                         <span class="highlight"></span>
+                       </div>
+                      <a>Tote Feeding Speed :  </a> <a id="ToteFeedSpeed">No Feeder</a>
+                      <div id="shortslider">
+                         <input class="bar" type="range" id ="Tote_Feed_Speed" name="Tote_Feed_Speed" min="0" max="3" value ="0" onchange="update_data();">
+                         <span class="highlight"></span>
+                       </div>
+                    </div>
+
+            	</form>
+                   Total Points:<a id="TotalPoints"> </a> <br><br>
+
+            </div>
+
+            <div id="BackField">
+                    <h2>Back Scoring Platform:</h2>
+
+                    <div id=stacks3>
+                      Stacks: <br>
+                      Litter: <br>
+                      Bin: <br><br>
+                      Totes: <br><br>
+                      Knocked Over:<br><br>
+                      Points:<br><br>
+                    </div>
+
+                    <div id=stacks2>Stack1<br>
+                    <input type="checkbox" name="stack1Litter" id="S1Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack1Bin" id="S1Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack1Totes" id="S1Totes" min="0" max="6" size=8 onchange="update_data();"/><br>
+                    <input type="checkbox" name="s1knockedOver" id="S1KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S1points"> </a> <br><br>
+					</div>
+
+                    <div id=stacks2>Stack2:<br>
+                    <input type="checkbox" name="stack2itter" id="S2Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack2Bin" id="S2Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack2Totes" id="S2Totes" min="0" max="6" onchange="update_data();"/><br>
+                    <input type="checkbox" name="s2knockedOver" id="S2KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S2points"> </a> <br><br>
+					</div>
+
+                     <div id=stacks2>Stack3:<br>
+                    <input type="checkbox" name="stack3Litter" id="S3Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack3Bin" id="S3Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack3Totes" id="S3Totes" min="0" max="6" onchange="update_data();"/><br>
+                    <input type="checkbox" name="s3knockedOver" id="S3KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S3points"> </a> <br><br>
+					</div>
+
+                    <div id=stacks2>Stack4:<br>
+                    <input type="checkbox" name="stack4Litter" id="S4Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack4Bin" id="S4Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack4Totes" id="S4Totes" min="0" max="6"  onchange="update_data();"/><br>
+                    <input type="checkbox" name="s4knockedOver" id="S4KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S4points"> </a> <br><br>
+					</div>
+
+                     <div id=stacks2>Stack5:<br>
+                    <input type="checkbox" name="stack5Litter" id="S5Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack5Bin" id="S5Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack5Totes" id="S5Totes" min="0" max="6"  onchange="update_data();"/><br>
+                    <input type="checkbox" name="s5knockedOver" id="S5KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S5points"> </a> <br><br>
+					</div>
+
+                    <div id=stacks2> Stack6:<br>
+                    <input type="checkbox" name="stack6Litter" id="S6Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack6Bin" id="S6Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack6Totes" id="S6Totes" min="0" max="6"  onchange="update_data();"/><br>
+                    <input type="checkbox" name="s6knockedOver" id="S6KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S6points"> </a> <br><br>
+					</div>
+
+                     <div id=stacks2>Stack7:<br>
+                    <input type="checkbox" name="stack7Litter" id="S7Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack7Bin" id="S7Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack7Totes" id="S7Totes" min="0" max="6"  onchange="update_data();"/><br>
+                    <input type="checkbox" name="s7knockedOver" id="S7KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S7points"> </a> <br><br>
+					</div>
+
+                    <div id=stacks2>Stack8:<br>
+                    <input type="checkbox" name="stack8Litter" id="S8Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack8Bin" id="S8Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack8Totes" id="S8Totes" min="0" max="6"  onchange="update_data();"/><br>
+                    <input type="checkbox" name="s8knockedOver" id="S8KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S8points"> </a> <br><br>
+					</div>
+
+                     <div id=stacks2>Stack9:<br>
+                    <input type="checkbox" name="stack9Litter" id="S9Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack9Bin" id="S9Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack9Totes" id="S9Totes" min="0" max="6"  onchange="update_data();"/><br>
+                    <input type="checkbox" name="s9knockedOver" id="S9KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S9points"> </a> <br><br>
+					</div>
+
+                    <div id=stacks2> Stack10:<br>
+                    <input type="checkbox" name="stack10Litter" id="S10Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack10Bin" id="S10Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack10Totes" id="S10Totes" min="0" max="6"  onchange="update_data();"/><br>
+                    <input type="checkbox" name="s1knockedOver" id="S10KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S10points"> </a> <br><br>
+					</div>
+				</div>
+
+            	<div id="FrontField">
+
+                     <h2>Front Scoring Platform:</h2><br>
+
+                    <div id=stacks3>
+                    Stacks: <br>
+                    Litter: <br>
+                    Bin: <br><br>
+                    Totes: <br><br>
+                    Knocked Over:<br><br>
+                    Points:<br><br>
+                    </div>
+
+                    <div id=stacks2>Stack11<br>
+                    <input type="checkbox" name="stack11Litter" id="S11Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack11Bin" id="S11Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack11Totes" id="S11Totes" min="0" max="6" size=8 onchange="update_data();"/><br>
+                    <input type="checkbox" name="s11knockedOver" id="S11KnockedOver" onchange="update_data();"/><br><br>
+                     <input type="checkbox" name="s11knockedOver" id="S11KnockedOver" onchange="update_data();"/><br><br>
+                    <input type="checkbox" name="s11knockedOver" id="S11KnockedOver" onchange="update_data();"/><br><br>
+                   <a id="S11points"> </a> <br><br>
+					</div>
+
+                    <div id=stacks2>Stack12:<br>
+                    <input type="checkbox" name="stack12itter" id="S12Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack12Bin" id="S12Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack12Totes" id="S12Totes" min="0" max="6" onchange="update_data();"/><br>
+                    <input type="checkbox" name="s12knockedOver" id="S12KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S12points"> </a> <br><br>
+					</div>
+
+                     <div id=stacks2>Stack13:<br>
+                    <input type="checkbox" name="stack13Litter" id="S13Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack13Bin" id="S13Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack13Totes" id="S13Totes" min="0" max="6" onchange="update_data();"/><br>
+                    <input type="checkbox" name="s13knockedOver" id="S13KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S13points"> </a> <br><br>
+					</div>
+
+                    <div id=stacks2>Stack14:<br>
+                    <input type="checkbox" name="stack14Litter" id="S14Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack14Bin" id="S14Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack14Totes" id="S14Totes" min="0" max="6"  onchange="update_data();"/><br>
+                    <input type="checkbox" name="s14knockedOver" id="S14KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S14points"> </a> <br><br>
+					</div>
+
+                     <div id=stacks2>Stack15:<br>
+                    <input type="checkbox" name="stack15Litter" id="S15Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack15Bin" id="S15Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack15Totes" id="S15Totes" min="0" max="6"  onchange="update_data();"/><br>
+                    <input type="checkbox" name="s15knockedOver" id="S15KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S15points"> </a> <br><br>
+					</div>
+
+                    <div id=stacks2> Stack16:<br>
+                    <input type="checkbox" name="stack16Litter" id="S16Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack16Bin" id="S16Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack16Totes" id="S16Totes" min="0" max="6"  onchange="update_data();"/><br>
+                    <input type="checkbox" name="s16knockedOver" id="S16KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S16points"> </a> <br><br>
+					</div>
+
+                     <div id=stacks2>Stack17:<br>
+                    <input type="checkbox" name="stack17Litter" id="S17Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack17Bin" id="S17Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack17Totes" id="S17Totes" min="0" max="6"  onchange="update_data();"/><br>
+                    <input type="checkbox" name="s17knockedOver" id="S17KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S17points"> </a> <br><br>
+					</div>
+
+                    <div id=stacks2>Stack18:<br>
+                    <input type="checkbox" name="stack18Litter" id="S18Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack18Bin" id="S18Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack18Totes" id="S18Totes" min="0" max="6"  onchange="update_data();"/><br>
+                    <input type="checkbox" name="s18knockedOver" id="S18KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S18points"> </a> <br><br>
+					</div>
+
+                     <div id=stacks2>Stack19:<br>
+                    <input type="checkbox" name="stack19Litter" id="S19Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack19Bin" id="S19Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack19Totes" id="S19Totes" min="0" max="6"  onchange="update_data();"/><br>
+                    <input type="checkbox" name="s19knockedOver" id="S19KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S19points"> </a> <br><br>
+					</div>
+
+                    <div id=stacks2>Stack20:<br>
+                    <input type="checkbox" name="stack20Litter" id="S20Litter" onchange="update_data();"/><br>
+               		<input type="checkbox" name="stack20Bin" id="S20Bin" onchange="update_data();"/><br>
+               		<input type="number" name="stack20Totes" id="S20Totes" min="0" max="6"  onchange="update_data();"/><br>
+                    <input type="checkbox" name="s2knockedOver" id="S20KnockedOver" onchange="update_data();"/><br><br>
+                    <a id="S20points"> </a> <br><br>
+					</div>
+
+				</div>
+
+            	<div id="LandFill">
+
+                    	<h2>Landfill and Step:</h2>
+               			<div id=stacks> Litter in Landfill:  <input type="number" name="litterInLandfill" id="LitterInLandfill" min="0" max="10" /><br> </div>
+               			<div id=stacks> Unprocessed Litter:  <input type="number" name="litterPenalty" id="LitterPenalty" min="0" max="10" /><br>   </div>
+              			<div id=stacks> Got Bins from Step:  <input type="number" name="stepBins" id="StepBins" min="0" max="4" /><br>   </div>
+                			<br>
+                    	<div id=stacks> Coop-ToteSet on Step   <input type="checkbox" name="coopToteSet" id="CoopToteSet"><br>  </div>
+                    	<div id=stacks> Coop-Stack on Step   <input type="checkbox" name="coopStack" id="CoopStack">  </div>
+             	</div>
+
+
+            </div>
+        </div>
+
+
+        <div id="PostMatch">
+            <!-- ----------------------------- -->
+            <!-- ----------Post Match--------- -->
+            <!-- ----------------------------- -->
+                        	<br>
+                <a>Overall Rating :  </a>
+                <a id="post_overallrating">Do Not Pick</a>
+                <div id="shortslider">
+                    <input class="bar" type="range" id ="Overall_Rating" name="Overall_Rating" min="0" max="3" value ="0" onchange="Update_Stuff();">
+                    <span class="highlight"></span>
+                </div>
+
+
+            <textarea placeholder="Comments" id="Comments"></textarea>
+            <br>
+            <button id="SubmitReport" onclick="Submit_Report();">Submit Report</button>
+
+        </div>
+        <div id="MatchHistory">
+        	Main Match:
+        	<br>
+            <textarea id="HistoryCSV"></textarea>
+            <br><br>
+          	Pit Scout:
+            <br>
+            <textarea id="PitHistoryCSV"></textarea>
+            <br><br>
+            Shared Data:
+            <br>
+            <textarea id="SharedDataCSV"></textarea>
+            <br><br>
+            <button onclick="$('#HistoryPass').show(100,null);">Clear History</button>
+            <div id="HistoryPass">
+               Enter Password to Clear<input type="text" id="history_password" placeholder="Password">
+                <br>
+                <button onclick="Clear_History();">Confirm</button>
+            </div>
+        </div>
+
+
+        <div id="About">
+            2015 Scouting Tool for Recycle Rush. Updated each year by students and mentors from FRC 1736 Robot Casserole.
+            <br>Andrew Gurik :: Nick Dunne :: Aaron Thune :: Dan Thune :: Tim Delaney :: Zach Yarnot
+        </div>
+        <script type="text/javascript">
+            $('ul.tabs').each(function(){
+                // For each set of tabs, we want to keep track of
+                // which tab is active and it's associated content
+                var $active, $content, $links = $(this).find('a');
+
+                // If the location.hash matches one of the links, use that as the active tab.
+                // If no match is found, use the first link as the initial active tab.
+                $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
+                $active.addClass('active');
+                $content = $($active.attr('href'));
+
+                // Hide the remaining content
+                $links.not($active).each(function () {
+                    $($(this).attr('href')).hide();
+                });
+
+                // Bind the click event handler
+                $(this).on('click', 'a', function(e){
+                    // Make the old tab inactive.
+                    $active.removeClass('active');
+                    $content.hide();
+
+                    // Update the variables with the new link and content
+                    $active = $(this);
+                    $content = $($(this).attr('href'));
+
+                    // Make the tab active.
+                    $active.addClass('active');
+                    $content.show();
+
+                    // Prevent the anchor's default click action
+                    e.preventDefault();
+                });
+            });
+            $("#HistoryPass").hide(0,null);
+            document.getElementById("MatchHistoryLink").onclick = function (){
+                var existingData = localStorage.getItem("MatchData");
+                document.getElementById("HistoryCSV").value = existingData == null ? "" : existingData;
+                var existingPitData = localStorage.getItem("PitData");
+                document.getElementById("PitHistoryCSV").value = existingPitData == null ? "" : existingPitData;
+                var existingSharedData = localStorage.getItem("SharedData");
+                document.getElementById("SharedDataCSV").value = existingSharedData == null ? "" : existingSharedData;
+            };
+        </script>
+    </body>
+</html>

@@ -92,7 +92,7 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-#MatchData, #AutonomousData, #TeleopData, #EndData, #PostMatch {
+#MatchData, #AutonomousData, #TeleopData, #PostMatch {
     break-before: page
 }
 
@@ -154,20 +154,20 @@ button:active {
 
 body {
     background: #222;
-    padding: 1em;
-    margin: 0;
+    padding: 2em;
+    margin: 1.5;
     font-size: 16px;
     font-family: helvetica, sans-serif;
-    color: #777;
+    color: #FF9933;
 }
 
 input[type="text"], input[type="tel"], input[type="number"], input[type="checkbox"], textarea, select {
     border: 1px solid #111;
     padding: 0.5em;
-    font-size: 15px;
+    font-size: 19px;
     line-height: 1.2em;
-    background: #444;
-    color: #fff;
+    background: #555;
+    color: #999;
     font-family: helvetica, sans-serif;
     background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#444));
     -webkit-appearance: none;
@@ -175,12 +175,22 @@ input[type="text"], input[type="tel"], input[type="number"], input[type="checkbo
     -webkit-box-shadow: 1px 1px 1px #333;
     -moz-box-shadow: 1px 1px 1px #333;
     box-shadow: 1px 1px 1px #333;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
 textarea {
     width: 80%;
     height: 200px;
     margin: 5px;
+}
+
+textarea[class="Pit_Text_Field"] {
+	width: 80%;
+	height: 90px;
+	margin: 5px;
 }
 
 select {
@@ -204,7 +214,8 @@ input[type=checkbox]:checked {
 }
 
 input[type="number"], button {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
+    color:#D1FFD1
 }
 
 #slider {
@@ -335,7 +346,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 input[type="number"] {
-    width: 4.0em;
+    width: 1.8em;
 }
 
 #Comments {
@@ -358,22 +369,38 @@ li {
     display: inline-block;
 }
 
-#crossingTable {
-    border-spacing: 30px 10px;
-}
-
-.cross_counter {
-    font-size: 20px;
-}
-
-#BallsAndPoints, #StartLocation, #ShootingData, #TeleopSliders, 
-#MatchDataStrings, #MatchDataValues, #EndButtons, #EndSliders,
-#frm_loading_location, #frm_shooting_location{
+#FeatureDataStrings, #FeatureValues, #AutonomousScoring, #position, #FeatureComments, #teamLabel, #teamDisp {
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
-#StartLocation, #TeleopSliders, #EndSliders, #frm_loading_location {
+#AutonomousScoring  {
+    width: 300px;
+    margin-left: 10;
+    margin-right: auto;
+    text-align: right;
+}
+
+#stacks {
+    display: inline-block;
+    margin-left: 8px;
+    margin-right: float;
+    text-align: center;
+}
+
+#stacks2 {
+    display: inline-block;
+    width: 55px;
+    margin-left: 5px;
+    margin-right: auto;
+}
+
+#stacks3 {
+    display: inline-block;
+    margin="20px"
+    text-align: right;
+}
+#StartLocation, #TeleopSliders, #TeleScoring, #frm_loading_location, #FeatureComments {
     margin-left: 40px;
 }
 
@@ -385,7 +412,11 @@ li {
     width: 750px;
 }
 
-.downloadLink {font-size:1.5em; color: #610000; font-weight: bold;}
+#undoAttempt {
+	margin-left: 3em;
+}
+
+
 
 
 
