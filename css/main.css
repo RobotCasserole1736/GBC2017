@@ -187,12 +187,6 @@ textarea {
     margin: 5px;
 }
 
-textarea[class="Pit_Text_Field"] {
-	width: 80%;
-	height: 90px;
-	margin: 5px;
-}
-
 select {
     padding: 0.5em 1em 0.5em 0.75em;
     background: #444;
@@ -381,6 +375,20 @@ li {
     text-align: right;
 }
 
+#matchTitles {
+    display: inline-block;
+    margin-left: 8px;
+    margin-right: float;
+    text-align: right;
+}
+
+#matchFields {
+    display: inline-block;
+    margin-left: 8px;
+    margin-right: float;
+    text-align: left;
+}
+
 #stacks {
     display: inline-block;
     margin-left: 8px;
@@ -409,7 +417,7 @@ li {
 }
 
 #About {
-    width: 750px;
+    width: 850px;
 }
 
 #undoAttempt {

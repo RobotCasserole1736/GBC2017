@@ -3,24 +3,15 @@
  *
  */
 
-/******************************************************************************
- *
- * Object Definitions
- *
- ******************************************************************************/
- function Ball_Score(period, status, type){
 
- };
+window.onload=function(){updateData()};
 
 
- window.onload=function(){update_data()};
+/* Penalty Variables */
+var penalty = 0;
+var technical = 0;
 
-
- /* Penalty Variables */
- var penalty = 0;
- var technical = 0;
-
- var penalty_stack = new Array();
+var penalty_stack = new Array();
 
 /* autonomous */
 
@@ -32,30 +23,57 @@ var teleDrivingText = ["Little or No Movement", "Poor Driving", "Good Driving", 
 var defenseText = ["Awful/none", "It's not very affective...", "Average", "It's super affective!"]
 var overallRatingText = ["Do Not Pick", "Below Average", "Average", "Top Team"]
 
+
+
+function ballScore(period, type, count){
+
+};
+
+function undoBallScore(period){
+
+};
+
+function gearScore(period, location){
+
+};
+
+function undoGearScore(period){
+
+};
+
+function penalty(period, type){
+
+};
+
+function undoPenalty(){
+
+};
+
+
 /*
  * Update Data from input elements
  */
- function update_data()
- {
- 	// autonomous data
+function updateData()
+{
+	// autonomous data
 
- 	// teleop data
+	// teleop data
 
- 	// Post match data
+	// Post match data
 
 	/* update display */
-	disp_update();
+	displayUpdate();
 }
 
 /*
  * Calculate any points based on what data was input.
  * called from update_data().
  */
- function disp_update()
- {
- 	/* autonomous */
+function displayUpdate()
+{
+	/* autonomous */
 
- 	/* teleop */
+	/* teleop */
 
 	// defense = document.getElementById("defenseAbility")
 	// defenseRating = defenseText[defense]
@@ -66,19 +84,19 @@ var overallRatingText = ["Do Not Pick", "Below Average", "Average", "Top Team"]
 
 
 
-function save_data()
+function saveData()
 {
-	var matchData = document.getElementById("scout_name_in").value + ",";
-	matchData += document.getElementById("team_number_in").value + ",";
-	matchData += document.getElementById("match_number_in").value + ",";
-	matchData += document.getElementById("match_type").value + ",";
-  // autonomous tab fields
+	var matchData = document.getElementById("scoutName").value + ",";
+	matchData += document.getElementById("teamNumber").value + ",";
+	matchData += document.getElementById("matchNumber").value + ",";
+	matchData += document.getElementById("matchType").value + ",";
+	// autonomous tab fields
 
-  // teleop tab fields
+	// teleop tab fields
 
-  // post match fields
+	// post match fields
 
-	var comments = document.getElementById("Comments").value;
+	var comments = document.getElementById("comments").value;
 	comments = comments.replace(",","_"); //Get rid of commas so we don't mess up CSV
 	comments = comments.replace(/(\r\n|\n|\r)/gm,"  ");  // get rid of any newline characters
 	matchData += comments + "\n";  // add a single newline at the end of the data
@@ -93,11 +111,11 @@ function save_data()
 //Clears all data in the form.
 //Do not call this unless it is ok to actually clear all data.
 //This only resets stuff Nick felt should be reset
-function reset_form()
+function resetForm()
 {
 	// match data reset
-	document.getElementById("team_number_in").value = "";
-	document.getElementById("match_number_in").value = parseInt(document.getElementById("match_number_in").value) + 1;
+	document.getElementById("teamNumber").value = "";
+	document.getElementById("matchNumber").value = parseInt(document.getElementById("matchNumber").value) + 1;
 
 	// autonomous data reset
 
@@ -105,25 +123,22 @@ function reset_form()
 	// teleop data reset
 
 	// update all data displays(counts, text, etc)
-	update_data();
+	updateData();
 }
 
 
-function Submit_Report()
+function submitReport()
 {
-	save_data();
-
-	reset_form();
+	saveData();
+	resetForm();
 }
 
-function Clear_History()
+function clearHistory()
 {
 	if(document.getElementById("history_password").value == "Beans")
 	{
 		localStorage.clear();
 		document.getElementById("HistoryCSV").value = "";
-		document.getElementById("PitHistoryCSV").value = "";
-		document.getElementById("SharedDataCSV").value = "";
 		$("#HistoryPass").hide(100,null);
 	}
 	else

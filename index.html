@@ -10,7 +10,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Green Bean Casserole | FRC 1736</title>
-        <meta name="description" content="This is the 2015 FRC 1736 Scouting Application, for use in the Recycle Rush game">
+        <meta name="description" content="This is the 2017 FRC 1736 Scouting Application, for use in the FIRST Steamworks game">
         <meta name="vieport" content="width=device-width">
 
         <link rel="stylesheet" href="css/main.css">
@@ -30,7 +30,6 @@
 
         <script type="text/javascript" src="./js/GreenBean.js"></script>
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-        <script type="text/javascript" src="./js/libgif.js"></script>
 
     </head>
 
@@ -41,7 +40,7 @@
             <br>
         </div>
         <div id="teamDisp">
-            <input type="tel" id="teamNumber" placeholder="0" onchange="disp_update();">
+            <input type="tel" id="teamNumber" placeholder="0">
             <br>
         </div>
         <ul class='tabs'>
@@ -64,14 +63,14 @@
             <!-- ------------------------------ -->
             <!-- ----------Match Data---------- -->
             <!-- ------------------------------ -->
-            <div id="stacks">
+            <div id="matchTitles">
                 Scout Name
-                <br>
-                <br> Match Number
-                <br>
-                <br> Match Type
+                <br><br>
+                Match Number
+                <br><br>
+                Match Type
             </div>
-            <div id="stacks">
+            <div id="matchFields">
                 <input type="text" id="scountName" placeholder="*">
                 <br>
                 <input type="tel" id="matchNumber" placeholder="0">
@@ -92,58 +91,59 @@
 
             <!-- Need to add starting location selector here -->
             <div id=fuelAndGears>
-                <div id="AutoScoring">
+                <div id="autoScoring">
                     <h3>Starting Position</h3>
                     <form action=" ">
                         <input type="radio" name="position"> Boiler Side<br>
-                        <input type="radio" name="position"> center<br>
+                        <input type="radio" name="position"> Center<br>
                         <input type="radio" name="position"> Loading Side<br>
                     </form>
                     <br>
-                    Crossed Baseline: <input type="checkbox" id="crossedBaseline" onchange="update_data();"> <br><br>
+                    Crossed Baseline: <input type="checkbox" id="crossedBaseline" onchange="updateData();">
+                    <br>
+                    Hopper Pushed: <input type="checkbox" id="hopperPushedAuto" onchange="updateData();">
+                    <br><br>
                     <h3>Fuel</h3>
-                    <div id="AutoHighGoal">High Goal:
-                        <button onclick="Ball_Score('auto', 'make', 'high');">1</button>
-                        <button onclick="Ball_Score('auto', 'make', 'high');">5</button>
-                        <button onclick="Ball_Score('auto', 'make', 'high');">10</button>
+                    <div id="autoHighGoal">High Goal:
+                        <button onclick="ballScore('auto', 'high', 1);">1</button>
+                        <button onclick="ballScore('auto', 'high', 5);">5</button>
+                        <button onclick="ballScore('auto', 'high', 10);">10</button>
                     </div>
-
-                    Balls Scored: <a id="highBallsScoredAutoDisplay">0</a>
+                    
+                    High Balls Scored: <a id="highBallsScoredAutoDisplay">0</a>
                     <br>
-                    <button onclick="Undo_Score('auto');">Undo</button>
+                    <button onclick="undoBallScore('auto');">Undo</button>
                     <br>
-                    <div id="AutoLowGoal">Low Goal:
-                        <button onclick="Ball_Score('auto', 'make', 'low');">1</button>
-                        <button onclick="Ball_Score('auto', 'make', 'low');">5</button>
-                        <button onclick="Ball_Score('auto', 'make', 'low');">10</button>
+                    <div id="autoLowGoal">Low Goal:
+                        <button onclick="ballScore('auto', 'low', 1);">1</button>
+                        <button onclick="ballScore('auto', 'low', 5);">5</button>
+                        <button onclick="ballScore('auto', 'low', 10);">10</button>
                     </div>
-
-                    Balls Scored: <a id="">0</a>
+                    
+                    Low Balls Scored: <a id="lowBallsScoredAutoDisplay">0</a>
                     <br>
-                    <button onclick="Undo_Score('auto');">Undo</button>
+                    <button onclick="undoBallScore('auto');">Undo</button>
                     <br>
                     <h3>Gears</h3>
-                    <div id="AutoGear">Gears:
-                        <button onclick="Ball_Score('auto', 'deliver', 'gear');">left lift</button>
-                        <button onclick="Ball_Score('auto', 'deliver', 'gear');">center lift</button>
-                        <button onclick="Ball_Score('auto', 'deliver', 'gear');">right lift</button>
+                    <div id="autoGear">Gears:
+                        <button onclick="gearScore('auto', 'left');">Left Lift</button>
+                        <button onclick="gearScore('auto', 'center');">Center Lift</button>
+                        <button onclick="gearScore('auto', 'right');">Right Lift</button>
                     </div>
-
-                    Gears Delivered: <a id="tele_pts_display">0</a>
+                    
+                    Gears Delivered: <a id="gearsDisplayAuto">0</a>
                     <br>
-                    <button onclick="Undo_Score('auto');">Undo</button>
+                    <button onclick="undoGearScore('auto');">Undo</button>
                     <br>
                     <h3>Penalties</h3>
-                    <button onclick="Penalty('penalty', 'auto');">Penalty</button>
-                    <button onclick="Penalty('technical', 'auto');">Technical Foul</button>
+                    <button onclick="penalty('auto', 'penalty');">Penalty</button>
+                    <button onclick="penalty('auto', 'technical');">Technical Foul</button>
                     <br>
-                    <a>Penalties :  </a><a id="penaltyDisplayAuto">0</a>
+                    <a>Penalties: </a><a id="penaltyDisplayAuto">0</a>
                     <br>
-                    <a>Technical Fouls :  </a><a id="technicalDisplayAuto">0</a>
+                    <a>Technical Fouls: </a><a id="technicalDisplayAuto">0</a>
                     <br>
-                    <button onclick="Undo_Penalty();">Undo Penalty</button>
-                    <br>
-                    Hopper Pushed: <input type="checkbox" id="hopperPushedAuto" onchange="update_data();"> <br><br>
+                    <button onclick="undoPenalty();">Undo Penalty</button>
                 </div>
             </div>   
         </div>
@@ -154,82 +154,84 @@
             <!-- ----------Teleoperated Period---------- -->
             <!-- --------------------------------------- -->
 
-            <div id="Teleop">
+            <div id="teleopScoring">
 
-                How's My Driving?:  <a id="tele_driving_display">Little or No Movement</a>
+                How's My Driving?: <a id="drivingDisplay">Little or No Movement</a>
                 <div id="shortslider">
-                    <input class="bar" type="range" id ="drivingAbility" min="0" max="3" value ="0" onchange="update_data();">
+                    <input class="bar" type="range" id ="drivingAbility" min="0" max="3" value ="0" onchange="updateData();">
                     <span class="highlight"></span>
                 </div>
-                Defense:  <a id="defenseAbility">Awful/None</a>
+                Defense:  <a id="defenseDisplay">Awful/None</a>
                 <div id="shortslider">
-                    <input class="bar" type="range" id ="Tote_Feed_Speed" name="Tote_Feed_Speed" min="0" max="3" value ="0" onchange="update_data();">
+                    <input class="bar" type="range" id ="defenseAbility" min="0" max="3" value ="0" onchange="updateData();">
                     <span class="highlight"></span>
                 </div>
                 <h3>Fuel</h3>
-                <div id="AutoHighGoal">High Goal:
-                    <button onclick="Ball_Score('teleop', 'make', 'high');">1</button>
-                    <button onclick="Ball_Score('teleop', 'make', 'high');">5</button>
-                    <button onclick="Ball_Score('teleop', 'make', 'high');">10</button>
+                <div id="teleHighGoal">High Goal:
+                    <button onclick="ballScore('teleop', 'high', 1);">1</button>
+                    <button onclick="ballScore('teleop', 'high', 5);">5</button>
+                    <button onclick="ballScore('teleop', 'high', 10);">10</button>
                 </div>
                 
-                Balls Scored: <a id="tele_pts_display">0</a>
+                High Balls Scored: <a id="highBallsScoredTeleDisplay">0</a>
                 <br>
-                Points Scored: <a id="tele_miss_display">0</a>
+                <button onclick="undoBallScore('teleop');">Undo</button>
                 <br>
-                <button onclick="Undo_Score('teleop');">Undo</button>
-                <br>
-                <div id="AutoLowGoal">low goal:
-                    <button onclick="Ball_Score('teleop', 'make', 'low');">1</button>
-                    <button onclick="Ball_Score('teleop', 'make', 'low');">5</button>
-                    <button onclick="Ball_Score('teleop', 'make', 'low');">10</button>
+                <div id="teleLowGoal">Low Goal:
+                    <button onclick="ballScore('teleop', 'low', 1);">1</button>
+                    <button onclick="ballScore('teleop', 'low', 5);">5</button>
+                    <button onclick="ballScore('teleop', 'low', 10);">10</button>
                 </div>
                 
-                Balls Scored: <a id="tele_pts_display">0</a>
+                Low Balls Scored: <a id="lowBallsScoredTeleDisplay">0</a>
                 <br>
-                Points Scored: <a id="tele_miss_display">0</a>
+                <button onclick="undoBallScore('teleop');">Undo</button>
                 <br>
-                <button onclick="Undo_Score('teleop');">Undo</button>
-                <br>
-                Accuracy:  <a id="ToteFeedSpeed">0%</a>
+                Accuracy: <a id="accuracyDisplay">0%</a>
                 <div id="shortslider">
-                    <input class="bar" type="range" id ="Tote_Feed_Speed" name="Tote_Feed_Speed" min="0" max="3" value ="0" onchange="update_data();">
+                    <input class="bar" type="range" id ="shootingAccuracy" min="0" max="3" value ="0" onchange="updateData();">
                     <span class="highlight"></span>
                 </div>
                 <br>
                 <h3>Gears</h3>
                 <div id="AutoGear">Gears:
-                    <button onclick="Ball_Score('Teleop', 'Deliver', 'Gear');">left lift</button>
-                    <button onclick="Ball_Score('Teleop', 'Deliver', 'Gear');">center lift</button>
-                    <button onclick="Ball_Score('Teleop', 'Deliver', 'Gear');">right lift</button>
+                    <button onclick="gearScore('teleop', 'left');">Left Lift</button>
+                    <button onclick="gearScore('teleop', 'center');">Center Lift</button>
+                    <button onclick="gearScore('teleop', 'right');">Right Lift</button>
                 </div>
                 
-                Gears Delivered: <a id="tele_pts_display">0</a>
+                Gears Delivered: <a id="gearsDisplayTele">0</a>
                 <br>
-                <button onclick="Undo_Score('teleop');">Undo</button>
+                <button onclick="undoGearScore('teleop');">Undo</button>
                 <br>
                 <h3>Penalty</h3>
-                <button onclick="Penalty('penalty', 'teleop');">Penalty</button>
-                <button onclick="Penalty('technical', 'teleop');">Technical Foul</button>
+                <button onclick="penalty('teleop', 'penalty');">Penalty</button>
+                <button onclick="penalty('teleop', 'technical');">Technical Foul</button>
                 <br>
-                Penalties: <a id="penalty_display1">0</a>
+                Penalties: <a id="penaltyDisplayTele">0</a>
                 <br>
-                Technical Fouls: <a id="technical_display1">0</a>
+                Technical Fouls: <a id="technicalDisplayTele">0</a>
                 <br>
-                <button onclick="Undo_Penalty();">Undo Penalty</button>
+                <button onclick="undoPenalty();">Undo Penalty</button>
                 <br>
                 <h4>Fuel Loading</h4>
-                Top Loading: <input type="checkbox" id="topLoadingFuel" onchange="update_data();"> <br><br>
-                Ground Pickup: <input type="checkbox" id="groundPickupFuel" onchange="update_data();"> <br><br>
+                Top Loading: <input type="checkbox" id="topLoadingFuel" onchange="updateData();">
+                <br><br>
+                Ground Pickup: <input type="checkbox" id="groundPickupFuel" onchange="updateData();">
+                <br><br>
                 <h4>Gear Loading</h4>
-                Top Loading: <input type="checkbox" id="topLoadingGear" onchange="update_data();"> <br><br>
-                Ground Pickup: <input type="checkbox" id="groundPickupGear" onchange="update_data();"> <br><br>
+                Top Loading: <input type="checkbox" id="topLoadingGear" onchange="updateData();">
+                <br><br>
+                Ground Pickup: <input type="checkbox" id="groundPickupGear" onchange="updateData();">
+                <br><br>
                 <h4>Climbing</h4>
-                Climb Attempted: <input type="checkbox" id="climbAttempt" onchange="update_data();"> <br><br>
-                Climb Succesful: <input type="checkbox" id="climbSuccess" onchange="update_data();"> <br><br>
-                Climb Time:  <a id="climbTime">0 seconds</a>
+                Climb Attempted: <input type="checkbox" id="climbAttempt" onchange="updateData();">
+                <br><br>
+                Climb Succesful: <input type="checkbox" id="climbSuccess" onchange="updateData();">
+                <br><br>
+                Climb Time: <a id="climbTime">0 seconds</a>
                 <div id="shortslider">
-                    <input class="bar" type="range" id ="climbSpeedSlider" min="0" max="29" value ="0" onchange="update_data();">
+                    <input class="bar" type="range" id ="climbSpeedSlider" min="0" max="29" value ="0" onchange="updateData();">
                     <span class="highlight"></span>
                 </div>
             </div>
@@ -240,39 +242,39 @@
             <!-- ----------Post Match--------- -->
             <!-- ----------------------------- -->
             <h3>Human Player</h3>
-            <select name="match_type" id="match_type">
-                <option value="Qualification">HP</option>
-                <option value="Practice">no HP</option>
-                <option value="Elimination">not sure</option>
+            <select id="humanPlayerStatus">
+                <option value="NotSure">Not Sure</option>
+                <option value="HP">HP</option>
+                <option value="NoHP">No HP</option>
             </select>
-            <select name="match_type" id="match_type">
-                <option value="Qualification">awesome</option>
-                <option value="Practice">good</option>
-                <option value="Elimination">meh</option>
-                <option value="Elimination">bad</option>
+            <select id="humanPlayerAbility">
+                <option value="Awesome">Awesome</option>
+                <option value="Good">Good</option>
+                <option value="Meh">Meh</option>
+                <option value="Bad">Bad</option>
             </select>
             <br>
             <h3>Pilot</h3>
-            <select name="match_type" id="match_type">
-                <option value="Qualification">pilot</option>
-                <option value="Practice">no pilot</option>
-                <option value="Elimination">not sure</option>
+            <select id="pilotStatus">
+                <option value="NotSure">Not Sure</option>
+                <option value="Pilot">Pilot</option>
+                <option value="NoPilot">No Pilot</option>
             </select>
-            <select name="match_type" id="match_type">
-                <option value="Qualification">awesome</option>
-                <option value="Practice">good</option>
-                <option value="Elimination">meh</option>
-                <option value="Elimination">bad</option>
+            <select id="pilotAbility">
+                <option value="Awesome">Awesome</option>
+                <option value="Good">Good</option>
+                <option value="Meh">Meh</option>
+                <option value="Bad">Bad</option>
             </select>
             <br>
             Overall Rating : <a id="overallRating">Do Not Pick</a>
             <div id="shortslider">
-            <input class="bar" type="range" id ="overallRating" min="0" max="3" value ="0" onchange="update_data();">
+            <input class="bar" type="range" id ="overallRating" min="0" max="3" value ="0" onchange="updateData();">
             <span class="highlight"></span>
             </div>
             <textarea placeholder="Comments" id="comments"></textarea>
             <br>
-            <button id="submitReport" onclick="Submit_Report();">Submit Report</button>
+            <button id="submitReport" onclick="submitReport();">Submit Report</button>
         </div>
 
         <div id="MatchHistory">
@@ -282,13 +284,14 @@
             <div id="historyPass">
                 Enter Password to Clear: <input type="text" id="history_password" placeholder="Password">
                 <br>
-                <button onclick="Clear_History();">Confirm</button>
+                <button onclick="clearHistory();">Confirm</button>
             </div>
         </div>
 
         <div id="About">
-            2015 Scouting Tool for Recycle Rush. Updated each year by students and mentors from FRC 1736 Robot Casserole.
-            <br>Andrew Gurik :: Nick Dunne :: Aaron Thune :: Dan Thune :: Tim Delaney :: Zach Yarnot
+            2017 Scouting Tool for Steamworks. Updated each year by students and mentors from FRC 1736 Robot Casserole.
+            <br><br>
+            Andrew Gurik :: Nick Dunne :: Aaron Thune :: Dan Thune :: Tim Delaney :: Zach Yarnot :: Jack Collins :: Tom Millard
         </div>
 
         <script type="text/javascript">
@@ -330,10 +333,6 @@
             document.getElementById("MatchHistoryLink").onclick = function (){
                 var existingData = localStorage.getItem("MatchData");
                 document.getElementById("HistoryCSV").value = existingData == null ? " " : existingData;
-                var existingPitData = localStorage.getItem("PitData");
-                document.getElementById("PitHistoryCSV").value = existingPitData == null ? " " : existingPitData;
-                var existingSharedData = localStorage.getItem("SharedData");
-                document.getElementById("SharedDataCSV").value = existingSharedData == null ? " " : existingSharedData;
             };
         </script>
     </body>
