@@ -161,23 +161,12 @@
 
             <div id="teleopScoring">
                 <div id="teleopScoring_left">
-                    How's My Driving?: <a id="drivingDisplay">Little or No Movement</a>
-                    <div id="shortslider">
-                        <input class="bar" type="range" id ="drivingAbility" min="0" max="3" value ="0" onchange="updateData();">
-                        <span class="highlight"></span>
-                    </div>
-                    Defense:  <a id="defenseDisplay">Awful/None</a>
-                    <div id="shortslider">
-                        <input class="bar" type="range" id ="defenseAbility" min="0" max="3" value ="0" onchange="updateData();">
-                        <span class="highlight"></span>
-                    </div>
                     <h3>Fuel</h3>
                     <div id="teleHighGoal">High Goal:
                         <button onclick="ballScore('teleop', 'high', 1);">1</button>
                         <button onclick="ballScore('teleop', 'high', 5);">5</button>
                         <button onclick="ballScore('teleop', 'high', 10);">10</button>
                     </div>
-                    
                     High Balls Scored: <a id="highBallsScoredTeleDisplay">0</a>
                     <br>
                     <button onclick="undoBallScore('teleop');">Undo</button>
@@ -187,7 +176,6 @@
                         <button onclick="ballScore('teleop', 'low', 5);">5</button>
                         <button onclick="ballScore('teleop', 'low', 10);">10</button>
                     </div>
-                    
                     Low Balls Scored: <a id="lowBallsScoredTeleDisplay">0</a>
                     <br>
                     <button onclick="undoBallScore('teleop');">Undo</button>
@@ -197,7 +185,11 @@
                         <input class="bar" type="range" id ="shootingAccuracy" min="0" max="3" value ="0" onchange="updateData();">
                         <span class="highlight"></span>
                     </div>
-                    <br>
+                    <h4>Fuel Loading</h4>
+                    Top Loading: <input type="checkbox" id="topLoadingFuel" onchange="updateData();">
+                    <br><br>
+                    Ground Pickup: <input type="checkbox" id="groundPickupFuel" onchange="updateData();">
+                    <br><br>
                 </div>
                 <div id="teleopScoring_center">
                     <h3>Gears</h3>
@@ -206,11 +198,17 @@
                         <button onclick="gearScore('teleop', 'center');">Center Lift</button>
                         <button onclick="gearScore('teleop', 'right');">Right Lift</button>
                     </div>
-                    
                     Gears Delivered: <a id="gearsDisplayTele">0</a>
                     <br>
                     <button onclick="undoGearScore('teleop');">Undo</button>
                     <br>
+                    <h4>Gear Loading</h4>
+                    Top Loading: <input type="checkbox" id="topLoadingGear" onchange="updateData();">
+                    <br><br>
+                    Ground Pickup: <input type="checkbox" id="groundPickupGear" onchange="updateData();">
+                    <br><br>
+                </div>
+                <div id="teleopScoring_right">
                     <h3>Penalty</h3>
                     <button onclick="penalty('teleop', 'penalty');">Penalty</button>
                     <button onclick="penalty('teleop', 'technical');">Technical Foul</button>
@@ -221,18 +219,16 @@
                     <br>
                     <button onclick="undoPenalty();">Undo Penalty</button>
                     <br>
-                    <h4>Fuel Loading</h4>
-                    Top Loading: <input type="checkbox" id="topLoadingFuel" onchange="updateData();">
-                    <br><br>
-                    Ground Pickup: <input type="checkbox" id="groundPickupFuel" onchange="updateData();">
-                    <br><br>
-                </div>
-                <div id="teleopScoring_right">
-                    <h4>Gear Loading</h4>
-                    Top Loading: <input type="checkbox" id="topLoadingGear" onchange="updateData();">
-                    <br><br>
-                    Ground Pickup: <input type="checkbox" id="groundPickupGear" onchange="updateData();">
-                    <br><br>
+                    How's My Driving?: <a id="drivingDisplay">Little or No Movement</a>
+                    <div id="shortslider">
+                        <input class="bar" type="range" id ="drivingAbility" min="0" max="3" value ="0" onchange="updateData();">
+                        <span class="highlight"></span>
+                    </div>
+                    Defense:  <a id="defenseDisplay">Awful/None</a>
+                    <div id="shortslider">
+                        <input class="bar" type="range" id ="defenseAbility" min="0" max="3" value ="0" onchange="updateData();">
+                        <span class="highlight"></span>
+                    </div>
                     <h4>Climbing</h4>
                     Climb Attempted: <input type="checkbox" id="climbAttempt" onchange="updateData();">
                     <br><br>
