@@ -92,58 +92,63 @@
             <!-- Need to add starting location selector here -->
             <div id=fuelAndGears>
                 <div id="autoScoring">
-                    <h3>Starting Position</h3>
-                    <form action=" ">
-                        <input type="radio" name="position"> Boiler Side<br>
-                        <input type="radio" name="position"> Center<br>
-                        <input type="radio" name="position"> Loading Side<br>
-                    </form>
-                    <br>
-                    Crossed Baseline: <input type="checkbox" id="crossedBaseline" onchange="updateData();">
-                    <br>
-                    Hopper Pushed: <input type="checkbox" id="hopperPushedAuto" onchange="updateData();">
-                    <br><br>
-                    <h3>Fuel</h3>
-                    <div id="autoHighGoal">High Goal:
-                        <button onclick="ballScore('auto', 'high', 1);">1</button>
-                        <button onclick="ballScore('auto', 'high', 5);">5</button>
-                        <button onclick="ballScore('auto', 'high', 10);">10</button>
+                    <div id="autoScoring_left" >
+                        <h3>Starting Position</h3>
+                        <form action=" ">
+                            <input type="radio" name="position"> Boiler Side<br>
+                            <input type="radio" name="position"> Center<br>
+                            <input type="radio" name="position"> Loading Side<br>
+                        </form>
+                        <br>
+                        Crossed Baseline: <input type="checkbox" id="crossedBaseline" onchange="updateData();">
+                        <br>
+                        Hopper Pushed: <input type="checkbox" id="hopperPushedAuto" onchange="updateData();">
+                        <br><br>
+
+                        <h3>Fuel</h3>
+                        <div id="autoHighGoal">High Goal:
+                            <button onclick="ballScore('auto', 'high', 1);">1</button>
+                            <button onclick="ballScore('auto', 'high', 5);">5</button>
+                            <button onclick="ballScore('auto', 'high', 10);">10</button>
+                        </div>
+
+                        High Balls Scored: <a id="highBallsScoredAutoDisplay">0</a>
+                        <br>
+                        <button onclick="undoBallScore('auto');">Undo</button>
+                        <br>
+                        <div id="autoLowGoal">Low Goal:
+                            <button onclick="ballScore('auto', 'low', 1);">1</button>
+                            <button onclick="ballScore('auto', 'low', 5);">5</button>
+                            <button onclick="ballScore('auto', 'low', 10);">10</button>
+                        </div>
+                        
+                        Low Balls Scored: <a id="lowBallsScoredAutoDisplay">0</a>
+                        <br>
+                        <button onclick="undoBallScore('auto');">Undo</button>
+                        <br>
                     </div>
-                    
-                    High Balls Scored: <a id="highBallsScoredAutoDisplay">0</a>
-                    <br>
-                    <button onclick="undoBallScore('auto');">Undo</button>
-                    <br>
-                    <div id="autoLowGoal">Low Goal:
-                        <button onclick="ballScore('auto', 'low', 1);">1</button>
-                        <button onclick="ballScore('auto', 'low', 5);">5</button>
-                        <button onclick="ballScore('auto', 'low', 10);">10</button>
+                        
+                    <div id="autoScoring_right">
+                        <h3>Gears</h3>
+                        <div id="autoGear">Gears:
+                            <button onclick="gearScore('auto', 'left');">Left Lift</button>
+                            <button onclick="gearScore('auto', 'center');">Center Lift</button>
+                            <button onclick="gearScore('auto', 'right');">Right Lift</button>
+                        </div>
+                        Gears Delivered: <a id="gearsDisplayAuto">0</a>
+                        <br>
+                        <button onclick="undoGearScore('auto');">Undo</button>
+                        <br>
+                        <h3>Penalties</h3>
+                        <button onclick="penalty('auto', 'penalty');">Penalty</button>
+                        <button onclick="penalty('auto', 'technical');">Technical Foul</button>
+                        <br>
+                        <a>Penalties: </a><a id="penaltyDisplayAuto">0</a>
+                        <br>
+                        <a>Technical Fouls: </a><a id="technicalDisplayAuto">0</a>
+                        <br>
+                        <button onclick="undoPenalty();">Undo Penalty</button>
                     </div>
-                    
-                    Low Balls Scored: <a id="lowBallsScoredAutoDisplay">0</a>
-                    <br>
-                    <button onclick="undoBallScore('auto');">Undo</button>
-                    <br>
-                    <h3>Gears</h3>
-                    <div id="autoGear">Gears:
-                        <button onclick="gearScore('auto', 'left');">Left Lift</button>
-                        <button onclick="gearScore('auto', 'center');">Center Lift</button>
-                        <button onclick="gearScore('auto', 'right');">Right Lift</button>
-                    </div>
-                    
-                    Gears Delivered: <a id="gearsDisplayAuto">0</a>
-                    <br>
-                    <button onclick="undoGearScore('auto');">Undo</button>
-                    <br>
-                    <h3>Penalties</h3>
-                    <button onclick="penalty('auto', 'penalty');">Penalty</button>
-                    <button onclick="penalty('auto', 'technical');">Technical Foul</button>
-                    <br>
-                    <a>Penalties: </a><a id="penaltyDisplayAuto">0</a>
-                    <br>
-                    <a>Technical Fouls: </a><a id="technicalDisplayAuto">0</a>
-                    <br>
-                    <button onclick="undoPenalty();">Undo Penalty</button>
                 </div>
             </div>   
         </div>
@@ -155,84 +160,89 @@
             <!-- --------------------------------------- -->
 
             <div id="teleopScoring">
-
-                How's My Driving?: <a id="drivingDisplay">Little or No Movement</a>
-                <div id="shortslider">
-                    <input class="bar" type="range" id ="drivingAbility" min="0" max="3" value ="0" onchange="updateData();">
-                    <span class="highlight"></span>
+                <div id="teleopScoring_left">
+                    How's My Driving?: <a id="drivingDisplay">Little or No Movement</a>
+                    <div id="shortslider">
+                        <input class="bar" type="range" id ="drivingAbility" min="0" max="3" value ="0" onchange="updateData();">
+                        <span class="highlight"></span>
+                    </div>
+                    Defense:  <a id="defenseDisplay">Awful/None</a>
+                    <div id="shortslider">
+                        <input class="bar" type="range" id ="defenseAbility" min="0" max="3" value ="0" onchange="updateData();">
+                        <span class="highlight"></span>
+                    </div>
+                    <h3>Fuel</h3>
+                    <div id="teleHighGoal">High Goal:
+                        <button onclick="ballScore('teleop', 'high', 1);">1</button>
+                        <button onclick="ballScore('teleop', 'high', 5);">5</button>
+                        <button onclick="ballScore('teleop', 'high', 10);">10</button>
+                    </div>
+                    
+                    High Balls Scored: <a id="highBallsScoredTeleDisplay">0</a>
+                    <br>
+                    <button onclick="undoBallScore('teleop');">Undo</button>
+                    <br>
+                    <div id="teleLowGoal">Low Goal:
+                        <button onclick="ballScore('teleop', 'low', 1);">1</button>
+                        <button onclick="ballScore('teleop', 'low', 5);">5</button>
+                        <button onclick="ballScore('teleop', 'low', 10);">10</button>
+                    </div>
+                    
+                    Low Balls Scored: <a id="lowBallsScoredTeleDisplay">0</a>
+                    <br>
+                    <button onclick="undoBallScore('teleop');">Undo</button>
+                    <br>
+                    Accuracy: <a id="accuracyDisplay">0%</a>
+                    <div id="shortslider">
+                        <input class="bar" type="range" id ="shootingAccuracy" min="0" max="3" value ="0" onchange="updateData();">
+                        <span class="highlight"></span>
+                    </div>
+                    <br>
                 </div>
-                Defense:  <a id="defenseDisplay">Awful/None</a>
-                <div id="shortslider">
-                    <input class="bar" type="range" id ="defenseAbility" min="0" max="3" value ="0" onchange="updateData();">
-                    <span class="highlight"></span>
+                <div id="teleopScoring_center">
+                    <h3>Gears</h3>
+                    <div id="AutoGear">Gears:
+                        <button onclick="gearScore('teleop', 'left');">Left Lift</button>
+                        <button onclick="gearScore('teleop', 'center');">Center Lift</button>
+                        <button onclick="gearScore('teleop', 'right');">Right Lift</button>
+                    </div>
+                    
+                    Gears Delivered: <a id="gearsDisplayTele">0</a>
+                    <br>
+                    <button onclick="undoGearScore('teleop');">Undo</button>
+                    <br>
+                    <h3>Penalty</h3>
+                    <button onclick="penalty('teleop', 'penalty');">Penalty</button>
+                    <button onclick="penalty('teleop', 'technical');">Technical Foul</button>
+                    <br>
+                    Penalties: <a id="penaltyDisplayTele">0</a>
+                    <br>
+                    Technical Fouls: <a id="technicalDisplayTele">0</a>
+                    <br>
+                    <button onclick="undoPenalty();">Undo Penalty</button>
+                    <br>
+                    <h4>Fuel Loading</h4>
+                    Top Loading: <input type="checkbox" id="topLoadingFuel" onchange="updateData();">
+                    <br><br>
+                    Ground Pickup: <input type="checkbox" id="groundPickupFuel" onchange="updateData();">
+                    <br><br>
                 </div>
-                <h3>Fuel</h3>
-                <div id="teleHighGoal">High Goal:
-                    <button onclick="ballScore('teleop', 'high', 1);">1</button>
-                    <button onclick="ballScore('teleop', 'high', 5);">5</button>
-                    <button onclick="ballScore('teleop', 'high', 10);">10</button>
-                </div>
-                
-                High Balls Scored: <a id="highBallsScoredTeleDisplay">0</a>
-                <br>
-                <button onclick="undoBallScore('teleop');">Undo</button>
-                <br>
-                <div id="teleLowGoal">Low Goal:
-                    <button onclick="ballScore('teleop', 'low', 1);">1</button>
-                    <button onclick="ballScore('teleop', 'low', 5);">5</button>
-                    <button onclick="ballScore('teleop', 'low', 10);">10</button>
-                </div>
-                
-                Low Balls Scored: <a id="lowBallsScoredTeleDisplay">0</a>
-                <br>
-                <button onclick="undoBallScore('teleop');">Undo</button>
-                <br>
-                Accuracy: <a id="accuracyDisplay">0%</a>
-                <div id="shortslider">
-                    <input class="bar" type="range" id ="shootingAccuracy" min="0" max="3" value ="0" onchange="updateData();">
-                    <span class="highlight"></span>
-                </div>
-                <br>
-                <h3>Gears</h3>
-                <div id="AutoGear">Gears:
-                    <button onclick="gearScore('teleop', 'left');">Left Lift</button>
-                    <button onclick="gearScore('teleop', 'center');">Center Lift</button>
-                    <button onclick="gearScore('teleop', 'right');">Right Lift</button>
-                </div>
-                
-                Gears Delivered: <a id="gearsDisplayTele">0</a>
-                <br>
-                <button onclick="undoGearScore('teleop');">Undo</button>
-                <br>
-                <h3>Penalty</h3>
-                <button onclick="penalty('teleop', 'penalty');">Penalty</button>
-                <button onclick="penalty('teleop', 'technical');">Technical Foul</button>
-                <br>
-                Penalties: <a id="penaltyDisplayTele">0</a>
-                <br>
-                Technical Fouls: <a id="technicalDisplayTele">0</a>
-                <br>
-                <button onclick="undoPenalty();">Undo Penalty</button>
-                <br>
-                <h4>Fuel Loading</h4>
-                Top Loading: <input type="checkbox" id="topLoadingFuel" onchange="updateData();">
-                <br><br>
-                Ground Pickup: <input type="checkbox" id="groundPickupFuel" onchange="updateData();">
-                <br><br>
-                <h4>Gear Loading</h4>
-                Top Loading: <input type="checkbox" id="topLoadingGear" onchange="updateData();">
-                <br><br>
-                Ground Pickup: <input type="checkbox" id="groundPickupGear" onchange="updateData();">
-                <br><br>
-                <h4>Climbing</h4>
-                Climb Attempted: <input type="checkbox" id="climbAttempt" onchange="updateData();">
-                <br><br>
-                Climb Succesful: <input type="checkbox" id="climbSuccess" onchange="updateData();">
-                <br><br>
-                Climb Time: <a id="climbTime">0 seconds</a>
-                <div id="shortslider">
-                    <input class="bar" type="range" id ="climbSpeedSlider" min="0" max="29" value ="0" onchange="updateData();">
-                    <span class="highlight"></span>
+                <div id="teleopScoring_right">
+                    <h4>Gear Loading</h4>
+                    Top Loading: <input type="checkbox" id="topLoadingGear" onchange="updateData();">
+                    <br><br>
+                    Ground Pickup: <input type="checkbox" id="groundPickupGear" onchange="updateData();">
+                    <br><br>
+                    <h4>Climbing</h4>
+                    Climb Attempted: <input type="checkbox" id="climbAttempt" onchange="updateData();">
+                    <br><br>
+                    Climb Succesful: <input type="checkbox" id="climbSuccess" onchange="updateData();">
+                    <br><br>
+                    Climb Time: <a id="climbTime">0 seconds</a>
+                    <div id="shortslider">
+                        <input class="bar" type="range" id ="climbSpeedSlider" min="0" max="29" value ="0" onchange="updateData();">
+                        <span class="highlight"></span>
+                    </div>
                 </div>
             </div>
         </div>
