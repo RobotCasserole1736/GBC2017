@@ -183,7 +183,7 @@
                     <br>
                     Accuracy: <a id="accuracyDisplay">0%</a>
                     <div id="shortslider">
-                        <input class="bar" type="range" id ="shootingAccuracy" min="0" max="3" value ="0" onchange="updateData();">
+                    <input class="bar" type="range" id ="shootingAccuracy" min="0" max="100" step="25" value ="0" onchange="updateData();">
                         <span class="highlight"></span>
                     </div>
                     <h4>Fuel Loading</h4>
@@ -237,7 +237,7 @@
                     <br><br>
                     Climb Time: <a id="climbTime">0 seconds</a>
                     <div id="shortslider">
-                        <input class="bar" type="range" id ="climbSpeedSlider" min="0" max="29" value ="0" onchange="updateData();">
+                    <input class="bar" type="range" id ="climbSpeedSlider" min="0" max="30" value ="0" onchange="updateData();">
                         <span class="highlight"></span>
                     </div>
                 </div>
@@ -274,7 +274,7 @@
                 <option value="Bad">Bad</option>
             </select>
             <br>
-            Overall Rating : <a id="overallRating">Do Not Pick</a>
+            Overall Rating : <a id="overallRatingDisplay">Do Not Pick</a>
             <div id="shortslider">
             <input class="bar" type="range" id ="overallRating" min="0" max="3" value ="0" onchange="updateData();">
             <span class="highlight"></span>
