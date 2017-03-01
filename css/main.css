@@ -102,12 +102,17 @@ textarea {
 
 #autoScoring_left {
     float: left; 
-    width: 50%;
+    width: 33%;
+}
+
+#autoScoring_center {
+    float: left; 
+    width: 33%;
 }
 
 #autoScoring_right {
     float: right; 
-    width: 50%;
+    width: 33%;
 }
 
 #teleopScoring_left  {

@@ -93,24 +93,12 @@
             <div id=fuelAndGears>
                 <div id="autoScoring">
                     <div id="autoScoring_left" >
-                        <h3>Starting Position</h3>
-                        <form action=" ">
-                            <input type="radio" name="position"> Boiler Side<br>
-                            <input type="radio" name="position"> Center<br>
-                            <input type="radio" name="position"> Loading Side<br>
-                        </form>
-                        <br>
-                        Crossed Baseline: <input type="checkbox" id="crossedBaseline" onchange="updateData();">
-                        <br>
-                        Hopper Pushed: <input type="checkbox" id="hopperPushedAuto" onchange="updateData();">
-                        <br><br>
-
                         <h3>Fuel</h3>
                         <div id="autoHighGoal">High Goal:
                             <button onclick="ballScore('auto', 'high', 1);">1</button>
                             <button onclick="ballScore('auto', 'high', 5);">5</button>
                             <button onclick="ballScore('auto', 'high', 10);">10</button>
-                        </div>
+                        </div>  
 
                         High Balls Scored: <a id="highBallsScoredAutoDisplay">0</a>
                         <br>
@@ -127,8 +115,7 @@
                         <button onclick="undoBallScore('auto');">Undo</button>
                         <br>
                     </div>
-                        
-                    <div id="autoScoring_right">
+                    <div id="autoScoring_center" >
                         <h3>Gears</h3>
                         <div id="autoGear">Gears:
                             <button onclick="gearScore('auto', 'left');">Left Lift</button>
@@ -139,6 +126,20 @@
                         <br>
                         <button onclick="undoGearScore('auto');">Undo</button>
                         <br>
+                    </div>
+                    <div id="autoScoring_right">
+                        <h3>Starting Position</h3>
+                        <form action=" ">
+                            <input type="radio" name="position"> Boiler Side<br>
+                            <input type="radio" name="position"> Center<br>
+                            <input type="radio" name="position"> Loading Side<br>
+                        </form>
+                        <br>
+                        Crossed Baseline: <input type="checkbox" id="crossedBaseline" onchange="updateData();">
+                        <br>
+                        Hopper Pushed: <input type="checkbox" id="hopperPushedAuto" onchange="updateData();">
+                        <br><br>
+                        
                         <h3>Penalties</h3>
                         <button onclick="penalty('auto', 'penalty');">Penalty</button>
                         <button onclick="penalty('auto', 'technical');">Technical Foul</button>
