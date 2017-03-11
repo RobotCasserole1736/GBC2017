@@ -9,28 +9,12 @@ window.onload=function(){updateData()};
 var fuel_Stack = new Array();
 fuel_Stack['auto'] = new Array();
 fuel_Stack['teleop'] = new Array();
-/*fuel_Stack['auto']['low'] = 0;
-fuel_Stack['auto']['high'] = 0;
-fuel_Stack['teleop']['low'] = 0;
-fuel_Stack['teleop']['high'] = 0;*/
+
 var gear_Stack = new Array();
 gear_Stack['auto'] = new Array();
 gear_Stack['teleop'] = new Array();
-/*gear_Stack['auto']['low'] = 0;
-gear_Stack['auto']['high'] = 0;
-gear_Stack['teleop']['low'] = 0;
-gear_Stack['teleop']['high'] = 0;*/
-
-/* Penalty Variables */
 
 var penalty_stack = new Array();
-
-
-/* autonomous */
-
-/* teleoperated */
-
-/* post match */
 
 var teleDrivingText = ["Little or No Movement", "Poor Driving", "Good Driving", "Exceptional Driving"]
 var defenseText = ["Awful/none", "It's not very effective...", "Average", "It's super effective!"]
@@ -120,25 +104,6 @@ function updateData()
 	document.getElementById('climbTime').innerHTML = document.getElementById('climbSpeedSlider').value + ' seconds';
 	// Post match data
 	document.getElementById('overallRatingDisplay').innerHTML = overallRatingText[parseInt(document.getElementById('overallRating').value)];
-	/* update display */
-	displayUpdate();
-}
-
-/*
- * Calculate any points based on what data was input.
- * called from update_data().
- */
-function displayUpdate()
-{
-	/* autonomous */
-
-	/* teleop */
-
-	// defense = document.getElementById("defenseAbility")
-	// defenseRating = defenseText[defense]
-
-	// overallrating = document.getElementById("Overall_Rating").value;
-	// document.getElementById("post_overallrating") = overall_rating_text[overallrating]
 }
 
 
@@ -149,20 +114,81 @@ function saveData()
 	matchData += document.getElementById("teamNumber").value + ",";
 	matchData += document.getElementById("matchNumber").value + ",";
 	matchData += document.getElementById("matchType").value + ",";
+
 	// autonomous tab fields
+	matchData += document.getElementById("highBallsScoredAutoDisplay").innerHTML + ",";
+	matchData += document.getElementById("lowBallsScoredAutoDisplay").innerHTML + ",";
+	var autoGears = [0,0,0];
+	for(var i = 0; i < gear_Stack["auto"].length; i++)
+	{
+		if(gear_Stack["auto"][i] == "left")
+			autoGears[0]++;
+		else if(gear_Stack["auto"][i] == "center")
+			autoGears[1]++;
+		else
+			autoGears[2]++;
+	}
+	matchData += autoGears[0] + "," + autoGears[1] + "," + autoGears[2] + ",";
+	if(document.getElementById("startingPositionBoiler").checked)
+		matchData += "Boiler,";
+	else if(document.getElementById("startingPositionCenter").checked)
+		matchData += "Center,";
+	else
+		matchData += "Loading,";
+
+	matchData += document.getElementById("crossedBaseline").checked + ",";
+	matchData += document.getElementById("hopperPushedAuto").checked + ",";
+
+
 	// teleop tab fields
+	matchData += document.getElementById("highBallsScoredTeleDisplay").innerHTML + ",";
+	matchData += document.getElementById("lowBallsScoredTeleDisplay").innerHTML + ",";
+	matchData += document.getElementById("shootingAccuracy").value + ",";
+	matchData += document.getElementById("topLoadingFuel").checked + ",";
+	matchData += document.getElementById("groundPickupFuel").checked + ",";
+
+	var teleGears = [0,0,0];
+	for(var i = 0; i < gear_Stack["teleop"].length; i++)
+	{
+		if(gear_Stack["teleop"][i] == "left")
+			teleGears[0]++;
+		else if(gear_Stack["teleop"][i] == "center")
+			teleGears[1]++;
+		else
+			teleGears[2]++;
+	}
+	matchData += teleGears[0] + "," + teleGears[1] + "," + teleGears[2];
+	matchData += document.getElementById("topLoadingGear").checked + ",";
+	matchData += document.getElementById("groundPickupGear").checked + ",";
+	matchData += document.getElementById("drivingAbility").value + ",";
+	matchData += document.getElementById("defenseAbility").value + ",";
+	matchData += document.getElementById("climbAttempt").checked + ",";
+	matchData += document.getElementById("climbSuccess").checked + ",";
+	matchData += document.getElementById("climbSpeedSlider").value + ",";
+
+	// penalties
+	matchData += document.getElementById("penaltyDisplayTele").innerHTML + ",";
+	matchData += document.getElementById("technicalDisplayTele").innerHTML + ",";
 
 	// post match fields
-
+	var hpStatus = document.getElementById("humanPlayerStatus");
+	matchData += hpStatus.options[hpStatus.selectedIndex].value + ",";
+	var hpAbility = document.getElementById("humanPlayerAbility");
+	matchData += hpAbility.options[hpAbility.selectedIndex].value + ",";
+	var pilotStatus = document.getElementById("pilotStatus");
+	matchData += pilotStatus.options[pilotStatus.selectedIndex].value + ",";
+	var pilotAbility = document.getElementById("pilotAbility");
+	matchData += pilotAbility.options[pilotAbility.selectedIndex].value + ",";
+	matchData += document.getElementById("overallRating").value + ",";
 	var comments = document.getElementById("comments").value;
 	comments = comments.replace(",","_"); //Get rid of commas so we don't mess up CSV
 	comments = comments.replace(/(\r\n|\n|\r)/gm,"  ");  // get rid of any newline characters
 	matchData += comments + "\n";  // add a single newline at the end of the data
 	var existingData = localStorage.getItem("MatchData");
 	if(existingData == null)
-		localStorage.setItem("MatchData",matchData);
+		localStorage.setItem("MatchData", matchData);
 	else
-		localStorage.setItem("MatchData",existingData + matchData);
+		localStorage.setItem("MatchData", existingData + matchData);
 	document.getElementById("HistoryCSV").value = localStorage.getItem("MatchData");
 }
 
@@ -176,9 +202,40 @@ function resetForm()
 	document.getElementById("matchNumber").value = parseInt(document.getElementById("matchNumber").value) + 1;
 
 	// autonomous data reset
-
+	fuel_Stack['auto'] = new Array();
+	gear_Stack['auto'] = new Array();
+	document.getElementById("startingPositionBoiler").checked = false;
+	document.getElementById("startingPositionCenter").checked = false;
+	document.getElementById("startingPositionLoading").checked = false;
+	document.getElementById("startingPositionLoading").checked = false;
+	document.getElementById("startingPositionLoading").checked = false;
+	document.getElementById("crossedBaseline").checked = false;
+	document.getElementById("hopperPushedAuto").checked = false;
 
 	// teleop data reset
+	fuel_Stack['teleop'] = new Array();
+	gear_Stack['teleop'] = new Array();
+	document.getElementById("shootingAccuracy").value = 0;
+	document.getElementById("topLoadingFuel").checked = false;
+	document.getElementById("groundPickupFuel").checked = false;
+	document.getElementById("topLoadingGear").checked = false;
+	document.getElementById("groundPickupGear").checked = false;
+	document.getElementById("drivingAbility").value = 0;
+	document.getElementById("defenseAbility").value = 0;
+	document.getElementById("climbAttempt").checked = false;
+	document.getElementById("climbSuccess").checked = false;
+	document.getElementById("climbSpeedSlider").value = 0;
+
+	//post match data reset
+	document.getElementById("humanPlayerStatus").selectedIndex = 0;
+	document.getElementById("humanPlayerAbility").selectedIndex = 0;
+	document.getElementById("pilotStatus").selectedIndex = 0;
+	document.getElementById("pilotAbility").selectedIndex = 0;
+	document.getElementById("overallRating").value = 0;
+	document.getElementById("comments").value = "";
+
+	// penalties reset
+	penalty_stack = new Array();
 
 	// update all data displays(counts, text, etc)
 	updateData();
