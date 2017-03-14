@@ -16,11 +16,11 @@ gear_Stack['teleop'] = new Array();
 
 var penalty_stack = new Array();
 
-var teleDrivingText = ["Little or No Movement", "Poor Driving", "Good Driving", "Exceptional Driving"]
-var defenseText = ["Awful/none", "It's not very effective...", "Average", "It's super effective!"]
-var overallRatingText = ["Do Not Pick", "Below Average", "Average", "Top Team"]
+var teleDrivingText = ["Little or No Movement", "Poor Driving", "Good Driving", "Exceptional Driving"];
+var defenseText = ["Awful/none", "It's not very effective...", "Average", "It's super effective!"];
+var overallRatingText = ["Do Not Pick", "Below Average", "Average", "Top Team"];
 
-
+var unsubmittedData = new Array();
 
 function ballScore(period, type, count){
 	fuel_Stack[period].push([type,count]);
@@ -190,6 +190,7 @@ function saveData()
 	else
 		localStorage.setItem("MatchData", existingData + matchData);
 	document.getElementById("HistoryCSV").value = localStorage.getItem("MatchData");
+	serverSubmit(matchData);
 }
 
 //Clears all data in the form.
@@ -260,4 +261,33 @@ function clearHistory()
 	{
 		document.getElementById("history_password").value = "Incorrect Password";
 	}
+}
+
+function serverSubmit(matchData)
+{
+    var xmlhttp = new XMLHttpRequest();
+
+    var sendData = "matchData=";
+    sendData += matchData;
+
+    xmlhttp.onreadystatechange = function()
+    {
+        if(xmlhttp.readyState == 4)
+        {
+            if(xmlhttp.status == 200)
+            {
+                if(unsubmittedData.length > 0)
+                    serverSubmit(unsubmittedData.pop());
+                return;
+            }
+            else
+            {
+                alert("Error submitting data - check that server is up!");
+                unsubmittedData.push(matchData);
+            }
+        }
+    };
+
+    xmlhttp.open("GET", "logMatches.php?" + sendData, true);
+    xmlhttp.send();
 }
