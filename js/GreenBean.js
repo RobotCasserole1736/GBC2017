@@ -157,7 +157,7 @@ function saveData()
 		else
 			teleGears[2]++;
 	}
-	matchData += teleGears[0] + "," + teleGears[1] + "," + teleGears[2];
+	matchData += teleGears[0] + "," + teleGears[1] + "," + teleGears[2] + ",";
 	matchData += document.getElementById("topLoadingGear").checked + ",";
 	matchData += document.getElementById("groundPickupGear").checked + ",";
 	matchData += document.getElementById("drivingAbility").value + ",";
