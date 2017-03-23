@@ -1,3 +1,8 @@
+
+
+![logo](http://robotcasserole.org/wp-content/uploads/2017/01/banner_2017_text.png)
+
+
 GreenBeanCasserole is Robot Casserole's web based match scouting system
 We normally run this on a Raspberry Pi as a web server and have all laptops wired directly to it through an ethernet switch
 
