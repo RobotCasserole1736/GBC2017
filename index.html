@@ -102,8 +102,6 @@
 
                         High Balls Scored: <a id="highBallsScoredAutoDisplay">0</a>
                         <br>
-                        <button onclick="undoBallScore('auto');">Undo</button>
-                        <br>
                         <div id="autoLowGoal">Low Goal:
                             <button onclick="ballScore('auto', 'low', 1);">1</button>
                             <button onclick="ballScore('auto', 'low', 5);">5</button>
@@ -118,9 +116,8 @@
                     <div id="autoScoring_center" >
                         <h3>Gears</h3>
                         <div id="autoGear">Gears:
-                            <button onclick="gearScore('auto', 'left');">Left Lift</button>
+                            <button onclick="gearScore('auto', 'side');">Side Lift</button>
                             <button onclick="gearScore('auto', 'center');">Center Lift</button>
-                            <button onclick="gearScore('auto', 'right');">Right Lift</button>
                         </div>
                         Gears Delivered: <a id="gearsDisplayAuto">0</a>
                         <br>
@@ -170,8 +167,6 @@
                     </div>
                     High Balls Scored: <a id="highBallsScoredTeleDisplay">0</a>
                     <br>
-                    <button onclick="undoBallScore('teleop');">Undo</button>
-                    <br>
                     <div id="teleLowGoal">Low Goal:
                         <button onclick="ballScore('teleop', 'low', 1);">1</button>
                         <button onclick="ballScore('teleop', 'low', 5);">5</button>
@@ -195,9 +190,8 @@
                 <div id="teleopScoring_center">
                     <h3>Gears</h3>
                     <div id="AutoGear">Gears:
-                        <button onclick="gearScore('teleop', 'left');">Left Lift</button>
+                        <button onclick="gearScore('teleop', 'side');">Side Lift</button>
                         <button onclick="gearScore('teleop', 'center');">Center Lift</button>
-                        <button onclick="gearScore('teleop', 'right');">Right Lift</button>
                     </div>
                     Gears Delivered: <a id="gearsDisplayTele">0</a>
                     <br>
