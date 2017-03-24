@@ -248,12 +248,7 @@
                 <option value="HP">HP</option>
                 <option value="NoHP">No HP</option>
             </select>
-            <select id="humanPlayerAbility">
-                <option value="Awesome">Awesome</option>
-                <option value="Good">Good</option>
-                <option value="Meh">Meh</option>
-                <option value="Bad">Bad</option>
-            </select>
+            Human Player Bad: <input type="checkbox" id="humanPlayerAbility" onchange="updateData();">
             <br>
             <h3>Pilot</h3>
             <select id="pilotStatus">
@@ -261,12 +256,7 @@
                 <option value="Pilot">Pilot</option>
                 <option value="NoPilot">No Pilot</option>
             </select>
-            <select id="pilotAbility">
-                <option value="Awesome">Awesome</option>
-                <option value="Good">Good</option>
-                <option value="Meh">Meh</option>
-                <option value="Bad">Bad</option>
-            </select>
+           Pilot Bad: <input type="checkbox" id="pilotAbility" onchange="updateData():">
             <br>
             Overall Rating : <a id="overallRatingDisplay">Do Not Pick</a>
             <div id="shortslider">
