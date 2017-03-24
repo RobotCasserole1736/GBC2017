@@ -1,7 +1,12 @@
+
+
+![logo](http://robotcasserole.org/wp-content/uploads/2017/01/banner_2017_text.png)
+
+
 GreenBeanCasserole is Robot Casserole's web based match scouting system
 We normally run this on a Raspberry Pi as a web server and have all laptops wired directly to it through an ethernet switch
 
-##MATCH INFO:
+## MATCH INFO:
 The match info section of this app has the things we need to know befor a match
 
 First, type the team number at the top of the page(note: if you forget it will always be at the top of the page so you can type it in later)
@@ -9,7 +14,7 @@ Second, type in who you are in the scout name bar
 Then, type in the match number
 Finally choose what type of match they are playing in (qualification, practice, elimination)
 
-##AUTO:
+## AUTO:
 This section of the app tells us what this team did in autonomous
 
 The fuel section counts how much fuel they scored in the boiler
@@ -29,7 +34,7 @@ The two check boxes indicate if a hopper was pushed or if the team crossed the b
 Finally there is the penalty section. If a penalty is given to the team push the penalty button
 If a technical foul is given to them push the technical foul button, the undo button is once again the to fix your mistakes
 
-##TELEOP:
+## TELEOP:
 This section records what the team did in teleop
 
 Counting fuel is exactly the same as in  auto so look at it in the auto section
@@ -45,7 +50,7 @@ The defense slider tells us how good there defense was or if they did defense at
 The climbing checkboxes indicate if they climbed and if the climb was succesful
 The climb time slider tells how much time is taken to climb
 
-##POST MATCH:
+## POST MATCH:
 Post match section tells us about the human players and gives an overall rating
 
 The first bars are for the human players/pilot, the first bar indicates if the team has a human player/pilot(note: if you don't know if they have one there is a not sure option)
@@ -55,11 +60,11 @@ The overall rating slider gives an overall rating on the team
 The comment section is for when you notice something that there is not an option for it in the app
 Once you've done all of this you must submit your report
 
-##MATCH HISTORY:
+## MATCH HISTORY:
 Match history is a backup to the data you've entered in the app
 
 To clear your match history you must have a password. It's meant to prevent accidental clearing of data, which is stored in browser LocalStorage
 The password can be found in the javascript if needed for some reason
 
-##ABOUT:
+## ABOUT:
 This section is just tells about who updated the previous version from last year
