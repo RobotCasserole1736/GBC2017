@@ -165,10 +165,8 @@ function saveData()
 	matchData += document.getElementById("technicalDisplayTele").innerHTML + ",";
 
 	// post match fields
-	var hpAbility = document.getElementById("humanPlayerAbility");
-	matchData += hpAbility.options[hpAbility.selectedIndex].value + ",";
-	var pilotAbility = document.getElementById("pilotAbility");
-	matchData += pilotAbility.options[pilotAbility.selectedIndex].value + ",";
+	matchData += document.getElementById("humanPlayerAbility").checked + ",";
+	matchData += document.getElementById("pilotAbility").checked + ",";
 	matchData += document.getElementById("overallRating").value + ",";
 	var comments = document.getElementById("comments").value;
 	comments = comments.replace(",","_"); //Get rid of commas so we don't mess up CSV
@@ -216,8 +214,8 @@ function resetForm()
 	document.getElementById("climbSpeedSlider").value = 0;
 
 	//post match data reset
-	document.getElementById("humanPlayerAbility").selectedIndex = 0;
-	document.getElementById("pilotAbility").selectedIndex = 0;
+	document.getElementById("humanPlayerAbility").checked = false;
+	document.getElementById("pilotAbility").checked = false;
 	document.getElementById("overallRating").value = 0;
 	document.getElementById("comments").value = "";
 
