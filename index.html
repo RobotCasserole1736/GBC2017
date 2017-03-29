@@ -181,10 +181,8 @@
                     <input class="bar" type="range" id ="shootingAccuracy" min="0" max="100" step="25" value ="0" onchange="updateData();">
                         <span class="highlight"></span>
                     </div>
-                    <h4>Fuel Loading</h4>
-                    Top Loading: <input type="checkbox" id="topLoadingFuel" onchange="updateData();">
-                    <br><br>
-                    Ground Pickup: <input type="checkbox" id="groundPickupFuel" onchange="updateData();">
+                    <br>
+                    Ground Fuel Pickup: <input type="checkbox" id="groundPickupFuel" onchange="updateData();">
                     <br><br>
                 </div>
                 <div id="teleopScoring_center">
@@ -196,11 +194,8 @@
                     Gears Delivered: <a id="gearsDisplayTele">0</a>
                     <br>
                     <button onclick="undoGearScore('teleop');">Undo</button>
-                    <br>
-                    <h4>Gear Loading</h4>
-                    Top Loading: <input type="checkbox" id="topLoadingGear" onchange="updateData();">
                     <br><br>
-                    Ground Pickup: <input type="checkbox" id="groundPickupGear" onchange="updateData();">
+                    Ground Gear Pickup: <input type="checkbox" id="groundPickupGear" onchange="updateData();">
                     <br><br>
                 </div>
                 <div id="teleopScoring_right">
@@ -242,12 +237,10 @@
             <!-- ----------------------------- -->
             <!-- ----------Post Match--------- -->
             <!-- ----------------------------- -->
-            <h3>Human Player</h3>
-            Human Player Bad: <input type="checkbox" id="humanPlayerAbility" onchange="updateData();">
+            Bad Human Player: <input type="checkbox" id="humanPlayerAbility" onchange="updateData();">
             <br>
-            <h3>Pilot</h3>
-           Pilot Bad: <input type="checkbox" id="pilotAbility" onchange="updateData():">
-            <br>
+            Bad Pilot: <input type="checkbox" id="pilotAbility" onchange="updateData():">
+            <br><br>
             Overall Rating : <a id="overallRatingDisplay">Do Not Pick</a>
             <div id="shortslider">
             <input class="bar" type="range" id ="overallRating" min="0" max="3" value ="0" onchange="updateData();">

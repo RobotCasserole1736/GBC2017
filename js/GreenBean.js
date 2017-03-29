@@ -118,17 +118,15 @@ function saveData()
 	// autonomous tab fields
 	matchData += document.getElementById("highBallsScoredAutoDisplay").innerHTML + ",";
 	matchData += document.getElementById("lowBallsScoredAutoDisplay").innerHTML + ",";
-	var autoGears = [0,0,0];
+	var autoGears = [0,0];
 	for(var i = 0; i < gear_Stack["auto"].length; i++)
 	{
-		if(gear_Stack["auto"][i] == "left")
+		if(gear_Stack["auto"][i] == "center")
 			autoGears[0]++;
-		else if(gear_Stack["auto"][i] == "center")
-			autoGears[1]++;
 		else
-			autoGears[2]++;
+			autoGears[1]++;
 	}
-	matchData += autoGears[0] + "," + autoGears[1] + "," + autoGears[2] + ",";
+	matchData += autoGears[0] + "," + autoGears[1] + ",";
 	if(document.getElementById("startingPositionBoiler").checked)
 		matchData += "Boiler,";
 	else if(document.getElementById("startingPositionCenter").checked)
@@ -144,21 +142,17 @@ function saveData()
 	matchData += document.getElementById("highBallsScoredTeleDisplay").innerHTML + ",";
 	matchData += document.getElementById("lowBallsScoredTeleDisplay").innerHTML + ",";
 	matchData += document.getElementById("shootingAccuracy").value + ",";
-	matchData += document.getElementById("topLoadingFuel").checked + ",";
 	matchData += document.getElementById("groundPickupFuel").checked + ",";
 
-	var teleGears = [0,0,0];
+	var teleGears = [0,0];
 	for(var i = 0; i < gear_Stack["teleop"].length; i++)
 	{
-		if(gear_Stack["teleop"][i] == "left")
+		if(gear_Stack["teleop"][i] == "center")
 			teleGears[0]++;
-		else if(gear_Stack["teleop"][i] == "center")
-			teleGears[1]++;
 		else
-			teleGears[2]++;
+			teleGears[1]++;
 	}
-	matchData += teleGears[0] + "," + teleGears[1] + "," + teleGears[2] + ",";
-	matchData += document.getElementById("topLoadingGear").checked + ",";
+	matchData += teleGears[0] + "," + teleGears[1] + ",";
 	matchData += document.getElementById("groundPickupGear").checked + ",";
 	matchData += document.getElementById("drivingAbility").value + ",";
 	matchData += document.getElementById("defenseAbility").value + ",";
@@ -171,12 +165,8 @@ function saveData()
 	matchData += document.getElementById("technicalDisplayTele").innerHTML + ",";
 
 	// post match fields
-	var hpStatus = document.getElementById("humanPlayerStatus");
-	matchData += hpStatus.options[hpStatus.selectedIndex].value + ",";
 	var hpAbility = document.getElementById("humanPlayerAbility");
 	matchData += hpAbility.options[hpAbility.selectedIndex].value + ",";
-	var pilotStatus = document.getElementById("pilotStatus");
-	matchData += pilotStatus.options[pilotStatus.selectedIndex].value + ",";
 	var pilotAbility = document.getElementById("pilotAbility");
 	matchData += pilotAbility.options[pilotAbility.selectedIndex].value + ",";
 	matchData += document.getElementById("overallRating").value + ",";
@@ -217,9 +207,7 @@ function resetForm()
 	fuel_Stack['teleop'] = new Array();
 	gear_Stack['teleop'] = new Array();
 	document.getElementById("shootingAccuracy").value = 0;
-	document.getElementById("topLoadingFuel").checked = false;
 	document.getElementById("groundPickupFuel").checked = false;
-	document.getElementById("topLoadingGear").checked = false;
 	document.getElementById("groundPickupGear").checked = false;
 	document.getElementById("drivingAbility").value = 0;
 	document.getElementById("defenseAbility").value = 0;
@@ -228,9 +216,7 @@ function resetForm()
 	document.getElementById("climbSpeedSlider").value = 0;
 
 	//post match data reset
-	document.getElementById("humanPlayerStatus").selectedIndex = 0;
 	document.getElementById("humanPlayerAbility").selectedIndex = 0;
-	document.getElementById("pilotStatus").selectedIndex = 0;
 	document.getElementById("pilotAbility").selectedIndex = 0;
 	document.getElementById("overallRating").value = 0;
 	document.getElementById("comments").value = "";
